@@ -170,9 +170,8 @@ function app() {
   function handleProgress(completedTask) {
     const percent = (completedTask / taskCount) * 100;
     progressBarFill.style.width = `${percent}%`;
-    progressBar.ariaLabel = `${Math.floor(percent)}% completed`;
+    progressBar.ariaLabel = `${percent}% completed`;
     taskCountElem.textContent = completedTask;
-    console.log({ percent, pe: Math.floor(percent) });
   }
   handleProgress(completedTask);
 }

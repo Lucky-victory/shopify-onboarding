@@ -733,4 +733,10 @@ main {
   .menu-dropdown-btn {
     padding: 0;
   }
+  .notification-popup {
+    width: 326px;
+  }
+  .notification-popup-content {
+    text-align: center;
+  }
 }
