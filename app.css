@@ -12,6 +12,9 @@ a {
   cursor: pointer;
   text-decoration: none;
 }
+button:focus {
+  outline: none;
+}
 :root {
   --text-xs: 12px;
   --text-sm: 13px;
