@@ -14,7 +14,8 @@ function app() {
   const taskCountElem = document.getElementById("task-count");
   const taskCount = 5;
   let completedTask = 0;
-  const progressBarFill = document.querySelector(".progress-bar-fill");
+  const progressBar = document.querySelector(".progress-bar");
+  const progressBarFill = progressBar.querySelector(".progress-bar-fill");
 
   notificationBtn.addEventListener("click", () => {
     if (dropdownMenu.classList.contains("popup-open")) {
@@ -36,7 +37,7 @@ function app() {
       closeNotification();
     }
     dropdownMenu.classList.toggle("popup-open");
-    const menuItems = dropdownMenu.querySelectorAll("[role='menuitem']");
+    const menuItems = dropdownMenu.querySelectorAll("[role='menuitem'] a");
 
     menuItems.forEach((menuItem, index) => {
       menuItem.addEventListener("keyup", (event) => {
@@ -90,15 +91,7 @@ function app() {
     dropdownMenu.classList.remove("popup-open");
     dropdownMenuBtn.focus();
   }
-  function toggleMenu() {
-    const isExpanded =
-      dropdownMenuBtn.attributes["aria-expanded"].value === "true";
-    if (isExpanded) {
-      closeMenu();
-    } else {
-      openMenu();
-    }
-  }
+
   accordionsContainer.addEventListener("change", (event) => {
     if (event.target.matches(".accordion-checkbox")) {
       const checkbox = event.target;
@@ -117,8 +110,11 @@ function app() {
       handleProgress(completedTask);
       if (checkbox.checked) {
         accordion.classList.remove("opened");
-        const nextSibling = accordion.nextElementSibling;
-        if (nextSibling && nextSibling.classList.contains("accordion")) {
+        accordion.classList.add("completed");
+        const nextSibling = accordionsContainer.querySelector(
+          ".accordion:not(.completed)"
+        );
+        if (nextSibling) {
           controlAccordion(nextSibling);
         }
       }
@@ -138,6 +134,7 @@ function app() {
     if (!checkbox.checked) {
       accordion.classList.add("opened");
       accordion.ariaExpanded = "true";
+      accordion.classList.remove("completed");
     }
   }
   function openAccordionByTop(accordion) {
@@ -158,7 +155,7 @@ function app() {
   sectionContentToggleBtn.addEventListener("click", () => {
     sectionContent.classList.toggle("minimize");
     if (sectionContent.classList.contains("minimize")) {
-      sectionContent.ariaExpanded = "false";
+      sectionContentToggleBtn.ariaExpanded = "false";
       sectionContentToggleBtn.querySelector("img").src =
         "https://crushingit.tech/hackathon-assets/icon-arrow-down.svg";
       sectionContentToggleBtn.ariaLabel = "expand section";
@@ -167,12 +164,15 @@ function app() {
         "https://crushingit.tech/hackathon-assets/icon-arrow-up.svg";
       sectionContentToggleBtn.ariaLabel = "minimize section";
 
-      sectionContent.ariaExpanded = "true";
+      sectionContentToggleBtn.ariaExpanded = "true";
     }
   });
   function handleProgress(completedTask) {
-    progressBarFill.style.width = `${(completedTask / taskCount) * 100}%`;
+    const percent = (completedTask / taskCount) * 100;
+    progressBarFill.style.width = `${percent}%`;
+    progressBar.ariaLabel = `${Math.floor(percent)}% completed`;
     taskCountElem.textContent = completedTask;
+    console.log({ percent, pe: Math.floor(percent) });
   }
   handleProgress(completedTask);
 }
