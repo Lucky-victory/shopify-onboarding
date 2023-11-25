@@ -126,14 +126,12 @@ function app() {
       accordionsContainer.querySelector(".accordion.opened");
     if (activeAccordion) {
       activeAccordion?.classList.remove("opened");
-      activeAccordion.ariaExpanded = "false";
     }
 
     const checkbox = accordion.querySelector(".accordion-checkbox");
 
     if (!checkbox.checked) {
       accordion.classList.add("opened");
-      accordion.ariaExpanded = "true";
       accordion.classList.remove("completed");
     }
   }
@@ -142,11 +140,9 @@ function app() {
       accordionsContainer.querySelector(".accordion.opened");
     if (activeAccordion) {
       activeAccordion?.classList.remove("opened");
-      activeAccordion.ariaExpanded = "false";
     }
     if (!accordion.classList.contains("opened")) {
       accordion.classList.add("opened");
-      accordion.ariaExpanded = "true";
     }
   }
   sectionTopCloseBtn.addEventListener("click", () => {
