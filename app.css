@@ -663,6 +663,7 @@ main {
   /* display: flex;
   align-items: center;
   gap: 16px; */
+  cursor: pointer;
   margin-bottom: 16px;
   padding: 2px 0;
 

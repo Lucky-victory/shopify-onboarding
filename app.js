@@ -100,8 +100,10 @@ function app() {
         controlAccordion(accordion);
       }
       const accordionTop = accordion.querySelector(".accordion-top");
-      accordionTop.addEventListener("click", () =>
-        openAccordionByTop(accordion)
+      accordionTop.addEventListener(
+        "click",
+        () => openAccordionByTop(accordion),
+        false
       );
       const checkedBoxes = accordionsContainer.querySelectorAll(
         ".accordion-checkbox:checked"
