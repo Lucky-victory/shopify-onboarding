@@ -92,27 +92,22 @@ function app() {
     dropdownMenuBtn.focus();
   }
 
-  accordionsContainer.addEventListener("change", (event) => {
+  accordionsContainer.addEventListener("click", (event) => {
     if (event.target.matches(".accordion-checkbox")) {
       const checkbox = event.target;
       const accordion = checkbox.closest(".accordion");
       if (!accordion.classList.contains("opened")) {
         controlAccordion(accordion);
       }
-      const accordionTop = accordion.querySelector(".accordion-top");
-      accordionTop.addEventListener(
-        "click",
-        () => openAccordionByTop(accordion),
-        false
-      );
+
       const checkedBoxes = accordionsContainer.querySelectorAll(
         ".accordion-checkbox:checked"
       );
       completedTask = checkedBoxes.length;
       handleProgress(completedTask);
       if (checkbox.checked) {
-        accordion.classList.remove("opened");
-        accordion.classList.add("completed");
+        // accordion.classList.remove("opened");
+        // accordion.classList.add("completed");
         const nextSibling = accordionsContainer.querySelector(
           ".accordion:not(.completed)"
         );
@@ -120,6 +115,13 @@ function app() {
           controlAccordion(nextSibling);
         }
       }
+    }
+    if (
+      event.target.matches(".accordion-top-wrap") ||
+      event.target.parentElement.matches(".accordion-top-wrap")
+    ) {
+      const accordion = event.target.closest(".accordion");
+      openAccordionByTop(accordion);
     }
   });
 
@@ -172,8 +174,17 @@ function app() {
     taskCountElem.textContent = completedTask;
   }
   handleProgress(completedTask);
-}
 
+  document.addEventListener("click", function (event) {
+    const isClickInsideMenu = dropdownMenu.contains(event.target);
+    const isClickOnButton =
+      event.target.classList.contains("notif-btn") ||
+      event.target.classList.contains(".menu-dropdown-btn");
+
+    if (!isClickInsideMenu && !isClickOnButton) {
+    }
+  });
+}
 document.addEventListener("DOMContentLoaded", () => {
   app();
 });
