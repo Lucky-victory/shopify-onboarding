@@ -17,17 +17,25 @@ function app() {
   const progressBar = document.querySelector(".progress-bar");
   const progressBarFill = progressBar.querySelector(".progress-bar-fill");
 
+  // notificationPopup.addEventListener("keyup", (event) => {
+  //   if (event.key === "Escape") {
+  //     closeNotification();
+  //     notificationBtn.focus();
+  //   }
+  // });
   notificationBtn.addEventListener("click", () => {
     if (dropdownMenu.classList.contains("popup-open")) {
       dropdownMenu.classList.remove("popup-open");
       closeMenu();
     }
+
     const isExpanded =
       notificationBtn.attributes["aria-expanded"].value === "true";
     if (isExpanded) {
       closeNotification();
     } else {
       openNotification();
+      notificationPopup.querySelectorAll(".btn")[0]?.focus();
     }
     notificationPopup.classList.toggle("popup-open");
   });
@@ -43,6 +51,7 @@ function app() {
       menuItem.addEventListener("keyup", (event) => {
         if (event.key === "Escape") {
           closeMenu();
+          dropdownMenuBtn.focus();
         }
         const isLastItem = index === menuItems.length - 1;
         const nextItem = index + 1;
@@ -67,6 +76,7 @@ function app() {
       dropdownMenuBtn.attributes["aria-expanded"].value === "true";
     if (isExpanded) {
       closeMenu();
+      dropdownMenuBtn.focus();
     } else {
       openMenu();
       menuItems.item(0).focus();
@@ -89,25 +99,31 @@ function app() {
     dropdownMenuBtn.ariaExpanded = "false";
     dropdownMenuBtn.ariaLabel = "open menu";
     dropdownMenu.classList.remove("popup-open");
-    dropdownMenuBtn.focus();
   }
 
   accordionsContainer.addEventListener("click", (event) => {
     if (event.target.matches(".accordion-checkbox")) {
       const checkbox = event.target;
       const accordion = checkbox.closest(".accordion");
+      const accordionBtn = accordion.querySelector(".btn--accordion");
       if (!accordion.classList.contains("opened")) {
         controlAccordion(accordion);
       }
 
+      if (accordion.classList.contains("opened")) {
+        accordionBtn.ariaExpanded = "true";
+      } else {
+        accordionBtn.ariaExpanded = "false";
+      }
       const checkedBoxes = accordionsContainer.querySelectorAll(
         ".accordion-checkbox:checked"
       );
       completedTask = checkedBoxes.length;
       handleProgress(completedTask);
       if (checkbox.checked) {
-        // accordion.classList.remove("opened");
-        // accordion.classList.add("completed");
+        accordion.classList.remove("opened");
+        accordion.classList.add("completed");
+
         const nextSibling = accordionsContainer.querySelector(
           ".accordion:not(.completed)"
         );
@@ -116,10 +132,7 @@ function app() {
         }
       }
     }
-    if (
-      event.target.matches(".accordion-top-wrap") ||
-      event.target.parentElement.matches(".accordion-top-wrap")
-    ) {
+    if (event.target.matches(".btn--accordion")) {
       const accordion = event.target.closest(".accordion");
       openAccordionByTop(accordion);
     }
@@ -137,6 +150,7 @@ function app() {
     if (!checkbox.checked) {
       accordion.classList.add("opened");
       accordion.classList.remove("completed");
+      // alert("hello");
     }
   }
   function openAccordionByTop(accordion) {
@@ -174,14 +188,17 @@ function app() {
     taskCountElem.textContent = completedTask;
   }
   handleProgress(completedTask);
-
   document.addEventListener("click", function (event) {
     const isClickInsideMenu = dropdownMenu.contains(event.target);
     const isClickOnButton =
-      event.target.classList.contains("notif-btn") ||
-      event.target.classList.contains(".menu-dropdown-btn");
-
-    if (!isClickInsideMenu && !isClickOnButton) {
+      event.target.matches(".notif-btn") ||
+      event.target.matches(".menu-dropdown-btn");
+    console.log({ t: event.target });
+    // closeMenu();
+    // closeNotification();
+    if (!isClickOnButton && openedPopup) {
+      const openedPopup = document.querySelector(".popup-open");
+      openedPopup.classList.remove("popup-open");
     }
   });
 }

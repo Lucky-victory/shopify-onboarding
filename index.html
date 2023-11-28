@@ -93,10 +93,10 @@
                 </a> </div>
             </div>
                 <div class="menu-divider"></div>
-                <ul class="menu-list" role="menu">
+                <ul class="menu-list" role="menu" id="menu-list">
                     
                 <li class="menu-item" role="menuitem">
-                    <a href="https://admin.shopify.com"  >
+                    <a href="https://admin.shopify.com" aria-owns="" >
                         Help Center
                     </a>
                 </li>
@@ -183,11 +183,11 @@ Logout
           
           </div>
           <div class="accordions-container" id="accordions-container">
-            <div class="accordion opened" >
+            <div class="accordion opened" id="accordion-1">
               <div class="flex jc-between">
                 <div class="accordion-inner">
-                    <label class="accordion-label" for="c1">
-                        <input type="checkbox"  id="c1" class="accordion-checkbox" />
+                    <label class="accordion-label" id="label1" for="c1" >
+                        <input type="checkbox" aria-labelledby="c1"  id="c1" class="accordion-checkbox" aria-controls="accordion-1" />
 <svg class="svg-dash" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
   <circle cx="12" cy="12" r="10" stroke="#8A8A8A" stroke-width="2.08333" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="5 5"/>
 </svg>
@@ -212,8 +212,10 @@ Logout
                     <div class="accordion-top">
                       <h3 class="accordion-title">
 
+<button class="btn btn--flat btn--accordion" type="button" aria-controls="accordion-1" aria-expanded="true">
 
-    Customize your online store
+  Customize your online store
+</button>
 
                         </h3>
                       </h3>
@@ -240,11 +242,11 @@ Logout
               </div>
             </div> 
             <!--  -->
-            <div class="accordion">
+            <div class="accordion" id="accordion-2">
               <div class="flex jc-between">
                 <div class="accordion-inner">
-             <label class="accordion-label" for="c2">
-                        <input type="checkbox"  id="c2" class="accordion-checkbox" />
+             <label class="accordion-label" for="c2" id="label2">
+                        <input type="checkbox" aria-labelledby="label2" id="c2" class="accordion-checkbox" aria-controls="accordion-2" />
 <svg class="svg-dash" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
   <circle cx="12" cy="12" r="10" stroke="#8A8A8A" stroke-width="2.08333" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="5 5"/>
 </svg>
@@ -267,7 +269,12 @@ Logout
                     </label>
                   <div class="accordion-top-wrap">
                     <div class="accordion-top">
-                      <h3 class="accordion-title">Add your first product</h3>
+                      <h3 class="accordion-title">
+                      <button class="btn btn--flat btn--accordion" type="button" aria-controls="accordion-2" aria-expanded="false">
+
+                        Add your first product
+                      </button>  
+                      </h3>
                     </div>
                     <div class="accordion-content">
 
@@ -293,11 +300,11 @@ Logout
                 </div>
               </div>
             </div>
-            <div class="accordion">
+            <div class="accordion" id="accordion-3">
               <div class="flex jc-between">
                 <div class="accordion-inner">
-                <label class="accordion-label" for="c3">
-                        <input type="checkbox"  id="c3" class="accordion-checkbox" />
+                <label class="accordion-label" for="c3" id="label3">
+                        <input type="checkbox"  id="c3" aria-labelledby="label3" class="accordion-checkbox" aria-controls="accordion-3" aria-expanded="false" />
 <svg class="svg-dash" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
   <circle cx="12" cy="12" r="10" stroke="#8A8A8A" stroke-width="2.08333" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="5 5"/>
 </svg>
@@ -320,7 +327,15 @@ Logout
                     </label>
                   <div class="accordion-top-wrap">
                     <div class="accordion-top">
-                      <h3 class="accordion-title">Add a custom domain</h3>
+                      <h3 class="accordion-title">
+                        
+                      <button class="btn btn--flat btn--accordion" type="button" aria-controls="accordion-3" aria-expanded="false">
+                        
+                        Add a custom domain
+                      </button>
+
+
+                      </h3>
                     </div>
                     <div class="accordion-content">
 
@@ -344,11 +359,11 @@ Logout
                 </div>
               </div>
             </div>
-            <div class="accordion">
+            <div class="accordion" id="accordion-4">
               <div class="flex jc-between">
                 <div class="accordion-inner">
-             <label class="accordion-label" for="c4">
-                        <input type="checkbox"  id="c4" class="accordion-checkbox" />
+             <label class="accordion-label" for="c4" id="label4">
+                        <input type="checkbox"  id="c4" aria-labelledby="label4" class="accordion-checkbox" aria-controls="accordion-4" />
 <svg class="svg-dash" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
   <circle cx="12" cy="12" r="10" stroke="#8A8A8A" stroke-width="2.08333" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="5 5"/>
 </svg>
@@ -371,7 +386,13 @@ Logout
                     </label>
                   <div class="accordion-top-wrap">
                     <div class="accordion-top">
-                      <h3 class="accordion-title">Name your store</h3>
+                      <h3 class="accordion-title">
+                        
+                      <button class="btn btn--flat btn--accordion" type="button" aria-controls="accordion-4" aria-expanded="false">
+
+                        Name your store
+                      </button>
+                      </h3>
                     </div>
                     <div class="accordion-content">
 
@@ -396,11 +417,11 @@ Logout
                 </div>
               </div>
             </div>
-            <div class="accordion">
+            <div class="accordion" id="accordion-5">
               <div class="flex jc-between">
                 <div class="accordion-inner">
-                <label class="accordion-label" for="c5">
-                        <input type="checkbox"  id="c5" class="accordion-checkbox" />
+                <label class="accordion-label" for="c5" id="label5">
+                        <input type="checkbox"  id="c5" aria-labelledby="label5" class="accordion-checkbox" aria-controls="accordion-5" />
 <svg class="svg-dash" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
   <circle cx="12" cy="12" r="10" stroke="#8A8A8A" stroke-width="2.08333" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="5 5"/>
 </svg>
@@ -423,7 +444,14 @@ Logout
                     </label>
                   <div class="accordion-top-wrap">
                     <div class="accordion-top">
-                      <h3 class="accordion-title">Set up a payment provider</h3>
+                      <h3 class="accordion-title">
+                        
+                      <button class="btn btn--flat btn--accordion" type="button" aria-controls="accordion-5" aria-expanded="false">
+
+                        Set up a payment provider
+                      </button>
+                      
+                      </h3>
                     </div>
                     <div class="accordion-content">
 
