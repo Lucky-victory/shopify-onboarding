@@ -190,14 +190,17 @@ function app() {
   handleProgress(completedTask);
   document.addEventListener("click", function (event) {
     const isClickInsideMenu = dropdownMenu.contains(event.target);
+    const target = event.target;
     const isClickOnButton =
-      event.target.matches(".notif-btn") ||
-      event.target.matches(".menu-dropdown-btn");
-    console.log({ t: event.target });
+      target.matches(".notif-btn") ||
+      notificationBtn.contains(target) ||
+      target.matches(".menu-dropdown-btn") ||
+      dropdownMenuBtn.contains(target);
+
     // closeMenu();
     // closeNotification();
-    if (!isClickOnButton && openedPopup) {
-      const openedPopup = document.querySelector(".popup-open");
+    const openedPopup = document.querySelector(".popup-open");
+    if (!isClickOnButton && !isClickInsideMenu && openedPopup) {
       openedPopup.classList.remove("popup-open");
     }
   });
